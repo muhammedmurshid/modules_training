@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="logic_training_program_form_view" model="ir.ui.view">
+        <field name="name">Training</field>
+        <field name="model">logic.modules.training</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Training">
+                <!--                <header>-->
+                <!--                    <field name="state" widget="statusbar"/>-->
+                <!--                    <button name="action_done" type="object" class="oe_highlight" string="Done" states="draft"/>-->
+                <!--                    <button name="return_to_draft" string="Return to Draft" class="btn-secondary" type="object" states="done"/>-->
+                <!--                </header>-->
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="department_id"/>
+                            <field name="head_id"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sessions" name="sessions">
+                            <field name="training_ids">
+                                <tree string="Sessions" editable="bottom">
+                                    <field name="description"/>
+                                    <field name="sessions" widget="binary"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="logic_training_program_list_view" model="ir.ui.view">
+        <field name="name">Training</field>
+        <field name="model">logic.modules.training</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="department_id"/>
+
+            </tree>
+
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="logic_training_program_action">
+        <field name="name">Training</field>
+        <field name="res_model">logic.modules.training</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Training" id="logic_training_program_main_menu"
+              web_icon="modules_training/static/description/icon.jpg"
+              sequence="9"/>
+    <menuitem name="Training" id="logic_training_program_menu"
+              action="logic_training_program_action"
+              parent="logic_training_program_main_menu"
+              sequence="2"/>
+
+</odoo>
